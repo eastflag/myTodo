@@ -7,7 +7,7 @@
       <input type="text" placeholder="할일" class="form-control">
     </div>
     <div class="col-xs-4">
-      <button type="button" class="btn btn-primary btn-block">추가</button>
+      <button type="button" class="btn btn-primary btn-block" id="add_todo">추가</button>
     </div>
   </div>
 
@@ -54,3 +54,21 @@
     </tr>
   </table>
 </div>
+<script>
+var todoList = [
+  {
+      isFinished: false, todo: '빨래하기', created: '2017-05-12 24:22:33', updated: '2017-05-12 24:12:12'
+  },
+  {
+    isFinished: false, todo: '빨래하기', created: '2017-05-12 24:22:33', updated: '2017-05-12 24:12:12'
+  },
+  {
+    isFinished: false, todo: '빨래하기', created: '2017-05-12 24:22:33', updated: '2017-05-12 24:12:12'
+  }
+];
+
+  $(document).ready(function () {
+    console.log('ready');
+  });
+
+</script>
