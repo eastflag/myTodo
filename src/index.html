@@ -7,8 +7,77 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
   <app-root>Loading...</app-root>
 </body>
 </html>
+<script>
+  var todoList =[];
+  /**
+   * 1 단계: click 시  view 만 붙인다.
+   * 2 단계: 뷰에 todo와 날짜 데이터를 가져와서 붙인다.
+   * 3 단계: 모델을 만들고 모델에 데이터를 넣은후 모델을 뷰에 바인딩한다.
+   */
+  function add_todo() {
+    var date = new Date();
+    var currentDate = date.getFullYear() + "-" + (addZero(date.getMonth() + 1)) + "-" + addZero(date.getDate()) + " "
+      + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + ":" + addZero(date.getSeconds());
+
+    var todo = {
+      isFinished: false,
+      todo: $('#input_todo').val(),
+      created: currentDate,
+      updated: currentDate
+    };
+
+    todoList.push(todo);
+
+    refresh();
+  }
+
+  function refresh() {
+    $('#todo_list').empty();
+
+    todoList.forEach(function(item, index) {
+      var todo =
+        '<tr>' +
+        '<td>' +
+        '<input type="checkbox" ' + (item.isFinished?'checked':'') + ' value="' + item.isFinished + '" onchange="update(' + index + ')">' +
+        '</td>' +
+        (item.isFinished?'<td style="text-decoration: line-through">':'<td>') + item.todo + '</td>' +
+        '<td>' + item.created + '</td>' +
+        '<td>' + item.updated + '</td>' +
+        '<td>' +
+        '<button type="button" class="btn btn-danger">삭제</button>' +
+        '</td>' +
+        '</tr>';
+      $('#todo_list').append(todo);
+    });
+  }
+
+  function addZero(digit) {
+      //digit 가 문자가 아니라 숫자이다 digit.length로는 안됨.
+      if(digit < 10) {
+          return "0" + digit;
+      } else {
+          return digit;
+      }
+  }
+
+  function update(index) {
+    console.log(todoList[index].isFinished);
+
+    var date = new Date();
+    var currentDate = date.getFullYear() + "-" + (addZero(date.getMonth() + 1)) + "-" + addZero(date.getDate()) + " "
+      + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + ":" + addZero(date.getSeconds());
+
+    todoList[index].isFinished = !todoList[index].isFinished;
+    todoList[index].updated = currentDate;
+
+    refresh();
+  }
+
+</script>
