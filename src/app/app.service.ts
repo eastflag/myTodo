@@ -1,8 +1,10 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Headers, Response} from "@angular/http";
 import {environment} from "../environments/environment";
 import {ResultVO} from "./domain/result.vo";
 import {REST} from "./constant";
+
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AppService {
@@ -27,7 +29,7 @@ export class AppService {
   }
 
   deleteTodo(params: any): Promise<ResultVO> {
-    return this.http.delete(this.SERVER + REST.todo, JSON.stringify(params), {headers: this.headers})
+    return this.http.delete(this.SERVER + REST.todo, {headers: this.headers})
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
@@ -37,7 +39,7 @@ export class AppService {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
+    const body = res.json();
     return body || { };
   }
 
