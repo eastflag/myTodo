@@ -29,11 +29,11 @@ export class AppService {
   }
 
   deleteTodo(params: any): Promise<ResultVO> {
-    return this.http.delete(this.SERVER + REST.todo, {headers: this.headers})
+    return this.http.delete(this.SERVER + REST.todo + "?todo_id=" + params.todo_id)
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
-  getTodoList(): Promise<ResultVO> {
+  getTodoList(): Promise<any> {
     return this.http.get(this.SERVER + REST.todo)
       .toPromise().then(this.extractData).catch(this.handleError);
   }

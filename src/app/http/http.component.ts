@@ -1,22 +1,39 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {AppService} from "../app.service";
 
 @Component({
   templateUrl: './http.component.html',
   styleUrls: ['./http.component.scss']
 })
-export class HttpComponent {
+export class HttpComponent implements OnInit {
   todo: string;
   todoList = [];
 
+  constructor(private appService: AppService) {
+
+  }
+
+  ngOnInit(): void {
+    this.getTodoList();
+  }
+
+  getTodoList() {
+    this.appService.getTodoList()
+      .then(data => {
+        this.todoList = data;
+      });
+  }
+
   add_todo() {
-    const item = {
-      isFinished: false,
+    var params = {
       todo: this.todo,
-      created: this.getCurrentDate(),
-      updated: this.getCurrentDate()
     };
 
-    this.todoList.push(item);
+    this.appService.addTodo(params)
+      .then(data => {
+        console.log(data);
+        this.getTodoList();
+      });
 
     this.todo = null;
   }
@@ -38,13 +55,28 @@ export class HttpComponent {
 
   update(item: any) {
     item.isFinished = !item.isFinished;
-    item.updated = this.getCurrentDate();
+
+    var params = {
+      isFinished: item.isFinished,
+      todo_id: item.todo_id
+    };
+    this.appService.updateTodo(params)
+      .then(data => {
+        console.log(data);
+        this.getTodoList();
+      });
   }
 
-  delete(index: number) {
-    const result = confirm('삭제하시겠습니까?');
+  delete(item: any) {
+    const result = confirm(item.todo + '을(를) 삭제하시겠습니까?');
     if (result) {
-      this.todoList.splice(index, 1);
+      var params = {
+        todo_id: item.todo_id
+      };
+      this.appService.deleteTodo(params)
+        .then(data => {
+          this.getTodoList();
+        });
     }
   }
 }

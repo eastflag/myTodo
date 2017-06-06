@@ -24,13 +24,14 @@
     <tbody>
     <tr *ngFor="let item of todoList; let i = index">
       <td>
-        <input type="checkbox" (change)="update(item)">
+
+        <input type="checkbox" [checked]="item.isFinished" (change)="update(item)">
       </td>
       <td [ngStyle]="{'text-decoration': item.isFinished?'line-through':'none'}">{{item.todo}}</td>
       <td>{{item.created}}</td>
       <td>{{item.updated}}</td>
       <td>
-        <button type="button" class="btn btn-danger" (click)="delete(i)">삭제</button>
+        <button type="button" class="btn btn-danger" (click)="delete(item)">삭제</button>
       </td>
     </tr>
     </tbody>

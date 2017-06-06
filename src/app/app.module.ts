@@ -10,6 +10,7 @@ import {BootstrapComponent} from "./bootstrap/bootstrap.component";
 import {JqueryComponent} from "./jquery/jquery.component";
 import {AngularComponent} from "./angular/angular.component";
 import {HttpComponent} from "./http/http.component";
+import {AppService} from "./app.service";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import {HttpComponent} from "./http/http.component";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AppService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

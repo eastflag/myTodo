@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  HOST: 'http://www.yosikcenter.com',
+  // HOST: 'http://localhost',
+  HOST: 'http://www.javabrain.kr',
   PORT: '8080'
 };
