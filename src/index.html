@@ -16,13 +16,32 @@
 </html>
 <script>
   var todoList =[];
+
+  $(document).ready(function () {
+    console.log('docunet ready');
+    getTodoList();
+  });
+
+  function getTodoList() {
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method: 'GET',
+      datatype: 'json',
+      success: function(data) {
+        console.log(data);
+        todoList = data;
+        refresh();
+      }
+    });
+  }
+
   /**
    * 1 단계: click 시  view 만 붙인다.
    * 2 단계: 뷰에 todo와 날짜 데이터를 가져와서 붙인다.
    * 3 단계: 모델을 만들고 모델에 데이터를 넣은후 모델을 뷰에 바인딩한다.
    */
   function add_todo() {
-    var date = new Date();
+    /*var date = new Date();
     var currentDate = date.getFullYear() + "-" + (addZero(date.getMonth() + 1)) + "-" + addZero(date.getDate()) + " "
       + addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + ":" + addZero(date.getSeconds());
 
@@ -35,7 +54,21 @@
 
     todoList.push(todo);
 
-    refresh();
+    refresh();*/
+
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method: 'POST',
+      data: JSON.stringify({todo: $('#input_todo').val(), isFinished: false}),
+      contentType: 'application/json',
+      datatype: 'json',
+      success: function(data) {
+        console.log(data);
+        if (data.result === 0) {
+            getTodoList();
+        }
+      }
+    });
   }
 
   function refresh() {
@@ -51,7 +84,7 @@
         '<td>' + item.created + '</td>' +
         '<td>' + item.updated + '</td>' +
         '<td>' +
-        '<button type="button" class="btn btn-danger">삭제</button>' +
+        '<button type="button" class="btn btn-danger" onclick="remove(' + index + ')">삭제</button>' +
         '</td>' +
         '</tr>';
       $('#todo_list').append(todo);
@@ -78,6 +111,11 @@
     todoList[index].updated = currentDate;
 
     refresh();
+  }
+
+  function remove(index) {
+      todoList.splice(index, 1);
+      refresh();
   }
 
 </script>
