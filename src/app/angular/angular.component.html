@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of todoList; let i = index">
+    <tr *ngFor="let item of todoList; let i = index" [@flyInOut] = "'in'">
       <td>
         <input type="checkbox" (change)="update(item)">
       </td>

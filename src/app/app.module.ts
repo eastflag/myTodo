@@ -11,6 +11,8 @@ import {JqueryComponent} from "./jquery/jquery.component";
 import {AngularComponent} from "./angular/angular.component";
 import {HttpComponent} from "./http/http.component";
 import {AppService} from "./app.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import {AppService} from "./app.service";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     AppRoutingModule

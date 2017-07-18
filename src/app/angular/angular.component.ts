@@ -1,8 +1,21 @@
 import {Component} from "@angular/core";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   templateUrl: './angular.component.html',
-  styleUrls: ['./angular.component.scss']
+  styleUrls: ['./angular.component.scss'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translate(0, 0)'})),
+      transition('void => *', [
+        style({transform: 'translate(-100%, 0)'}),
+        animate(1000)
+      ]),
+      transition('* => void', [
+        animate(1000, style({transform: 'translate(0, -100%)', opacity: '0'}))
+      ])
+    ])
+  ]
 })
 export class AngularComponent {
   todo: string;
