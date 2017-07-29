@@ -8,7 +8,7 @@
         <input type="text" placeholder="할일" class="form-control" [(ngModel)]="todo" name="todo" required>
       </div>
       <div class="col-xs-4">
-        <button type="submit" class="btn btn-primary btn-block">추가</button>
+        <button type="submit" class="btn btn-primary btn-block btn_add">추가</button>
       </div>
     </form>
   </div>
@@ -28,9 +28,10 @@
       <td>
         <input type="checkbox" (change)="update(item)">
       </td>
-      <td [ngStyle]="{'text-decoration': item.isFinished?'line-through':'none'}">{{item.todo}}</td>
-      <td>{{item.created}}</td>
-      <td>{{item.updated}}</td>
+      <!--<td [ngStyle]="{'text-decoration': item.isFinished?'line-through':'none'}">{{item.todo}}</td>-->
+      <td [class.todo_canceled]="item.isFinished">{{item.todo}}</td>
+      <td>{{item.created | myDate}}</td>
+      <td>{{item.updated | myDate}}</td>
       <td>
         <button type="button" class="btn btn-danger" (click)="delete(i)">삭제</button>
       </td>

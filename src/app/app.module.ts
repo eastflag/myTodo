@@ -12,12 +12,14 @@ import {AngularComponent} from "./angular/angular.component";
 import {HttpComponent} from "./http/http.component";
 import {AppService} from "./app.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MyDatePipe} from "./shared/my.date.pipe";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent, BootstrapComponent, JqueryComponent, AngularComponent, HttpComponent
+    HomeComponent, BootstrapComponent, JqueryComponent, AngularComponent, HttpComponent,
+    MyDatePipe,
   ],
   imports: [
     BrowserModule,

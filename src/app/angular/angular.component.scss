@@ -1,3 +1,26 @@
 .todo-input {
   margin-bottom: 1em;
 }
+
+.todo_canceled {
+  text-decoration: line-through;
+}
+
+$buttonColor: #286090;
+$buttonDark: darken($buttonColor, 10%);
+$buttonDarker: darken($buttonDark, 10%);
+
+button.btn_add {
+  box-shadow: 3px 3px 3px $buttonDark;
+  &:hover {
+    box-shadow: 3px 3px 3px $buttonDarker;
+  }
+  &:active {
+    box-shadow: none;
+    -webkit-transform: translate(3px, 3px);
+    -moz-transform: translate(3px, 3px);
+    -ms-transform: translate(3px, 3px);
+    -o-transform: translate(3px, 3px);
+    transform: translate(3px, 3px);
+  }
+}
