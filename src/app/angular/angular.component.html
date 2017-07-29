@@ -3,12 +3,14 @@
   <hr>
 
   <div class="row todo-input">
-    <div class="col-xs-8">
-      <input type="text" placeholder="할일" class="form-control" [(ngModel)]="todo">
-    </div>
-    <div class="col-xs-4">
-      <button type="button" class="btn btn-primary btn-block" (click)="add_todo()">추가</button>
-    </div>
+    <form (ngSubmit)="add_todo()" ngNativeValidate>
+      <div class="col-xs-8">
+        <input type="text" placeholder="할일" class="form-control" [(ngModel)]="todo" name="todo" required>
+      </div>
+      <div class="col-xs-4">
+        <button type="submit" class="btn btn-primary btn-block">추가</button>
+      </div>
+    </form>
   </div>
 
   <table class="table table-strip">

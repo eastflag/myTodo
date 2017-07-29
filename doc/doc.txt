@@ -1,7 +1,13 @@
+* 패키지 업그레이드
+package.json 4.0.0 => 4.3.0으로 일괄 변경후
+npm install
+
 * 애니메이션 적용 순서
-npm install (최신버전으로 업데이트하기위해 node_modules를 삭제후 다시 실행)
 npm install --save @angular/animations (반드시 끝에 s 붙어야 함)
 
 BrowserAnimationModule 추가
 
 애니메이션 적용할 UI에 state 추가
+
+* form API
+novalidate를 기본으로 돌리는 속성 ngNativeValidate

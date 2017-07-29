@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {TodoVo} from "../domain/todo.vo";
 
 @Component({
   templateUrl: './angular.component.html',
@@ -9,10 +10,10 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       state('in', style({transform: 'translate(0, 0)'})),
       transition('void => *', [
         style({transform: 'translate(-100%, 0)'}),
-        animate(1000)
+        animate(100)
       ]),
       transition('* => void', [
-        animate(1000, style({transform: 'translate(0, -100%)', opacity: '0'}))
+        animate(100, style({transform: 'translate(0, -100%)', opacity: '0'}))
       ])
     ])
   ]
@@ -22,12 +23,7 @@ export class AngularComponent {
   todoList = [];
 
   add_todo() {
-    const item = {
-      isFinished: false,
-      todo: this.todo,
-      created: this.getCurrentDate(),
-      updated: this.getCurrentDate()
-    };
+    const item = new TodoVo(false, this.todo, this.getCurrentDate(), this.getCurrentDate());
 
     this.todoList.push(item);
 
