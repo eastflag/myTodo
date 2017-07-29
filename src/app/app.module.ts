@@ -13,6 +13,7 @@ import {HttpComponent} from "./http/http.component";
 import {AppService} from "./app.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MyDatePipe} from "./shared/my.date.pipe";
+import {HighlightDirective} from "./shared/highlight.directive";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MyDatePipe} from "./shared/my.date.pipe";
     AppComponent,
     HomeComponent, BootstrapComponent, JqueryComponent, AngularComponent, HttpComponent,
     MyDatePipe,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
