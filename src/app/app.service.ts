@@ -28,8 +28,8 @@ export class AppService {
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
-  deleteTodo(params: any): Promise<ResultVO> {
-    return this.http.delete(this.SERVER + REST.todo + "?todo_id=" + params.todo_id)
+  deleteTodo(params: number): Promise<ResultVO> {
+    return this.http.delete(this.SERVER + REST.todo + "?todo_id=" + params)
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 

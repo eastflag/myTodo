@@ -11,7 +11,10 @@ export class TodoVo {
     this.updated = updated;
   }*/
 
-  constructor(public isFinished: boolean, public todo: string, public created: string, public updated: string) {
+  todo_id?: number;
+  isEdited?: boolean;
+
+  constructor(public isFinished?: boolean, public todo?: string, public created?: string, public updated?: string) {
 
   }
 }

@@ -1,16 +1,19 @@
 import {Component, OnInit} from "@angular/core";
 import {AppService} from "../app.service";
+import {TodoVo} from "../domain/todo.vo";
 
 @Component({
   templateUrl: './http.component.html',
   styleUrls: ['./http.component.scss']
 })
 export class HttpComponent implements OnInit {
-  todo: string;
+  newTodo: TodoVo;
   todoList = [];
+  // 취소시 복원하기 위한 데이터를 저장하는 컬렉션 :  number 에는 todo_id 저장
+  tempTodoList: Map<number, TodoVo> = new Map<number, TodoVo>();
 
   constructor(private appService: AppService) {
-
+    this.newTodo = new TodoVo();
   }
 
   ngOnInit(): void {
@@ -25,58 +28,52 @@ export class HttpComponent implements OnInit {
   }
 
   add_todo() {
-    var params = {
-      todo: this.todo,
-    };
-
-    this.appService.addTodo(params)
+    this.appService.addTodo(this.newTodo)
       .then(data => {
-        console.log(data);
-        this.getTodoList();
+        this.todoList.unshift(data);
       });
 
-    this.todo = null;
+    this.newTodo = new TodoVo();
   }
 
-  getCurrentDate(): string {
-    const date = new Date();
-    return date.getFullYear() + "-" + (this.addZero(date.getMonth() + 1)) + "-" + this.addZero(date.getDate()) + " "
-      + this.addZero(date.getHours()) + ":" + this.addZero(date.getMinutes()) + ":" + this.addZero(date.getSeconds());
-  }
-
-  addZero(digit: number): string {
-      // digit 가 문자가 아니라 숫자이다 digit.length로는 안됨.
-      if (digit < 10) {
-        return "0" + digit;
-      } else {
-        return "" + digit;
-      }
-  }
-
-  update(item: any) {
-    item.isFinished = !item.isFinished;
-
-    var params = {
-      isFinished: item.isFinished,
-      todo_id: item.todo_id
-    };
-    this.appService.updateTodo(params)
-      .then(data => {
-        console.log(data);
-        this.getTodoList();
+  update(item: TodoVo) {
+    this.appService.updateTodo(item)
+      .then((data: TodoVo) => {
+        item.isFinished = data.isFinished;
+        item.todo = data.todo;
+        // 에디터 상태 복원
+        item.isEdited = false;
       });
   }
 
-  delete(item: any) {
-    const result = confirm(item.todo + '을(를) 삭제하시겠습니까?');
+  delete(todoVo: TodoVo) {
+    const result = confirm(todoVo.todo + '을(를) 삭제하시겠습니까?');
     if (result) {
-      var params = {
-        todo_id: item.todo_id
-      };
-      this.appService.deleteTodo(params)
+      this.appService.deleteTodo(todoVo.todo_id)
         .then(data => {
-          this.getTodoList();
+          this.todoList.forEach((item, index) => {
+            if (item.todo_id === todoVo.todo_id) {
+              this.todoList.splice(index, 1);
+            }
+          });
         });
     }
+  }
+
+  save(todoVo: TodoVo) {
+    todoVo.isEdited = true;
+
+    let tempTodo = new TodoVo();
+    tempTodo.isFinished = todoVo.isFinished;
+    tempTodo.todo = todoVo.todo;
+    this.tempTodoList.set(todoVo.todo_id, tempTodo);
+  }
+
+  restore(todoVo: TodoVo) {
+    todoVo.isEdited = false;
+
+    let tempTodo = this.tempTodoList.get(todoVo.todo_id);
+    todoVo.isFinished = tempTodo.isFinished;
+    todoVo.todo = tempTodo.todo;
   }
 }
