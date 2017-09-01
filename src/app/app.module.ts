@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {HomeComponent} from "./home/home.component";
 import {AppRoutingModule} from "./app-routing";
-import {BootstrapComponent} from "./bootstrap/bootstrap.component";
 import {JqueryComponent} from "./jquery/jquery.component";
 import {AngularComponent} from "./angular/angular.component";
 import {HttpComponent} from "./http/http.component";
@@ -19,7 +18,7 @@ import {HighlightDirective} from "./shared/highlight.directive";
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent, BootstrapComponent, JqueryComponent, AngularComponent, HttpComponent,
+    HomeComponent, JqueryComponent, AngularComponent, HttpComponent,
     MyDatePipe,
     HighlightDirective,
   ],
