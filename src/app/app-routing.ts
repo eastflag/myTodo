@@ -12,7 +12,9 @@ const routes: Routes = [
     { path: 'jquery', component: JqueryComponent},
     { path: 'angular', component: AngularComponent},
     { path: 'http', component: HttpComponent},
-  ]}
+  ]},
+
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule'}
 ];
 
 @NgModule({
