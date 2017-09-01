@@ -4,12 +4,15 @@ import {HomeComponent} from "./home/home.component";
 import {JqueryComponent} from "./jquery/jquery.component";
 import {AngularComponent} from "./angular/angular.component";
 import {HttpComponent} from "./http/http.component";
+import {IndexComponent} from "./index.component";
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: 'jquery', component: JqueryComponent},
-  { path: 'angular', component: AngularComponent},
-  { path: 'http', component: HttpComponent},
+  { path: '', component: IndexComponent, children: [
+    { path: 'home', component: HomeComponent},
+    { path: 'jquery', component: JqueryComponent},
+    { path: 'angular', component: AngularComponent},
+    { path: 'http', component: HttpComponent},
+  ]}
 ];
 
 @NgModule({

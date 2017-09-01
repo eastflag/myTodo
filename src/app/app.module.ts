@@ -13,11 +13,13 @@ import {AppService} from "./app.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MyDatePipe} from "./shared/my.date.pipe";
 import {HighlightDirective} from "./shared/highlight.directive";
+import {IndexComponent} from "./index.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    IndexComponent,
     HomeComponent, JqueryComponent, AngularComponent, HttpComponent,
     MyDatePipe,
     HighlightDirective,
