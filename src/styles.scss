@@ -1,0 +1,170 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '/assets/fonts/NotoSansKR-Hestia.css';
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Noto Sans Korean', sans-serif;
+  font-weight: 300;
+  word-break: break-all;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  margin: 0 0 0.5rem 0;
+  font-weight: 400;
+  line-height: 1.1;
+  color: inherit;
+}
+
+p {
+  margin: 0 0 0.7rem 0;
+}
+
+p, ul, li, a, th, td {
+  font-size: 1rem;
+}
+
+table {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  thead {
+    background-color: #cccccc;
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    tr {
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+    }
+  }
+  tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+    tr {
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+    }
+  }
+}
+
+dl {
+  margin: 0 0 1rem 0;
+  dt {
+    font-weight: bold;
+  }
+  dt, dd {
+    line-height: 1.8rem;
+    margin: 0;
+  }
+}
+
+.table {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  thead, tbody {
+    tr {
+      th, td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+      }
+    }
+  }
+}
+
+.table-bordered {
+  border: 1px solid #ddd;
+  thead {
+    tr {
+      th, td {
+        border: 1px solid #ddd;
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        border: 1px solid #ddd;
+      }
+    }
+  }
+}
+
+.table-striped > thead > tr > th, .table-striped > thead > tr > td {
+  background-color: #c9c9c9;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td {
+  background-color: #f9f9f9;
+}
+
+.table-responsive {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-y: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  min-height: 0.01%;
+  white-space: nowrap;
+}
+
+.md-block {
+  width: 100%;
+}
+
+svg {
+  fill: currentColor;
+}
+
+div.content {
+  padding: 1rem;
+}
+
+@media screen and (max-width: 599px) {
+  html, body {
+    font-size: 12px;
+  }
+
+  div.content {
+    padding: 0.2rem;
+  }
+
+  /* 모바일에서 keep horizontal scroll visible */
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-scrollbar:vertical {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+}
