@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  // HOST: 'http://localhost',
-  HOST: 'http://www.javabrain.kr',
+  HOST: 'http://localhost:8080',
+  // HOST: 'http://www.javabrain.kr',
   PORT: '8080'
 };
