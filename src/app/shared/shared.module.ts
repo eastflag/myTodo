@@ -9,12 +9,16 @@ import {
   MdTooltipModule
 } from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {CKEditorModule} from "ng2-ckeditor";
 
 @NgModule({
   declarations: [
 
   ],
   imports: [
+    // ckeditor
+    CKEditorModule,
+    // flex layout
     FlexLayoutModule,
     // Material
     MdPaginatorModule,
@@ -45,6 +49,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MdTooltipModule,
   ],
   exports: [
+    // ckeditor
+    CKEditorModule,
+    // flex layout
     FlexLayoutModule,
     // Material
     MdPaginatorModule,

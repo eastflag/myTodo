@@ -1,8 +1,13 @@
 <router-outlet></router-outlet>
 
 <md-card>
-  <md-card-header>
-    <md-card-title>뉴스 목록</md-card-title>
+  <md-card-header fxLayout="row" fxLayoutAlign="space-between center">
+    <md-card-title>
+      뉴스 목록
+    </md-card-title>
+    <button md-raised-button md-button-sm color="accent" (click)="gotoWrite()" style="margin: 0 1rem 0 0;">
+      <md-icon>create</md-icon>글쓰기
+    </button>
   </md-card-header>
   <md-card-content>
     <div class="board-box" fxLayout="column" *ngFor="let news of newsList" (click)="gotoView(news)">

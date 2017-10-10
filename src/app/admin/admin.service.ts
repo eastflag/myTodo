@@ -40,6 +40,17 @@ export class AdminService {
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
+  imageUpload(formData: FormData): Promise<any> {
+    let headers = new Headers();
+    // headers.append('Content-Type', 'multipart/form-data'); //브라우저가 자동 생성함.
+    // headers.append("Authorization", "Bearer " + sessionStorage.getItem("admin_token"));
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.SERVER + '/api/imageUpload', formData, options)
+      .toPromise().then(this.extractData).catch(this.handleError);
+  }
+
   // 댓글 관리 ---------------------------------------------------------------------------------------------------------
   findComment(params: any): Promise<any> {
     return this.http.post(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers})
