@@ -17,6 +17,10 @@ import {IndexComponent} from "./index.component";
 import { LoginComponent } from './auth/login/login.component';
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {SharedModule} from "./shared/shared.module";
+import {AngularFireModule} from "angularfire2";
+import * as firebase from "firebase";
+import {myFirebaseConfig} from "./auth/my_firebase";
+import {AngularFireAuth} from "angularfire2/auth";
 
 
 @NgModule({
@@ -35,8 +39,9 @@ import {SharedModule} from "./shared/shared.module";
     HttpModule,
     AppRoutingModule,
     SharedModule,
+    AngularFireModule.initializeApp(myFirebaseConfig),
   ],
-  providers: [AppService, AuthGuardService],
+  providers: [AppService, AuthGuardService, AngularFireAuth],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
