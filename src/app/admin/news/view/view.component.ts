@@ -4,6 +4,7 @@ import {AdminService} from "../../admin.service";
 import {NewsVO} from "../../../domain/news.vo";
 import {MdDialog, MdDialogRef, MdSnackBar} from "@angular/material";
 import {ConfirmDialogComponent} from "../../../shared/dialog/confirm.dialog.component";
+import {PlatformLocation} from "@angular/common";
 
 @Component({
   selector: 'app-view',
@@ -16,7 +17,7 @@ export class ViewComponent implements OnInit {
   dialogRef: MdDialogRef<any>;
 
   constructor(private route: ActivatedRoute, private adminService: AdminService, private router: Router,
-              private snackBar: MdSnackBar, private dialog: MdDialog) { }
+              private snackBar: MdSnackBar, private dialog: MdDialog, private location: PlatformLocation) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -49,7 +50,7 @@ export class ViewComponent implements OnInit {
   }
 
   gotoModify() {
-    // let path = this.location.pathname;
-    // this.router.navigateByUrl(path.replace('view', 'modify'));
+    let path = this.location.pathname;
+    this.router.navigateByUrl(path.replace('view', 'modify'));
   }
 }

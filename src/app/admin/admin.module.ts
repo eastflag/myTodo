@@ -9,6 +9,7 @@ import {HttpModule} from "@angular/http";
 import {SharedModule} from "../shared/shared.module";
 import { ViewComponent } from './news/view/view.component';
 import { WriteComponent } from './news/write/write.component';
+import { ModifyComponent } from './news/modify/modify.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { WriteComponent } from './news/write/write.component';
     NewsComponent,
     ViewComponent,
     WriteComponent,
+    ModifyComponent,
   ],
   imports: [
     AdminRoutingModule,
