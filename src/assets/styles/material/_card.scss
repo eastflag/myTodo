@@ -19,5 +19,9 @@ body {
       margin-bottom: 0;
       position: relative;
     }
+    .mat-card-actions, .mat-card-actions:last-child {
+      padding: $gutter / 2;
+      margin: 0;
+    }
   }
 }
