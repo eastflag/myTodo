@@ -5,6 +5,7 @@ import {JqueryComponent} from "./jquery/jquery.component";
 import {AngularComponent} from "./angular/angular.component";
 import {HttpComponent} from "./http/http.component";
 import {IndexComponent} from "./index.component";
+import {LoginComponent} from "./auth/login/login.component";
 
 const routes: Routes = [
   { path: '', component: IndexComponent, children: [
@@ -12,6 +13,8 @@ const routes: Routes = [
     { path: 'jquery', component: JqueryComponent},
     { path: 'angular', component: AngularComponent},
     { path: 'http', component: HttpComponent},
+
+    { path: 'login', component: LoginComponent},
   ]},
 
   { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule'}

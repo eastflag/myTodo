@@ -14,6 +14,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MyDatePipe} from "./shared/my.date.pipe";
 import {HighlightDirective} from "./shared/highlight.directive";
 import {IndexComponent} from "./index.component";
+import { LoginComponent } from './auth/login/login.component';
+import {AuthGuardService} from "./auth/auth-guard.service";
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
@@ -23,15 +26,17 @@ import {IndexComponent} from "./index.component";
     HomeComponent, JqueryComponent, AngularComponent, HttpComponent,
     MyDatePipe,
     HighlightDirective,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
   ],
-  providers: [AppService],
+  providers: [AppService, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
