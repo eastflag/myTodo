@@ -10,10 +10,11 @@ import {
 } from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {CKEditorModule} from "ng2-ckeditor";
+import {ConfirmDialogComponent} from "./dialog/confirm.dialog.component";
 
 @NgModule({
   declarations: [
-
+    ConfirmDialogComponent
   ],
   imports: [
     // ckeditor
@@ -80,8 +81,10 @@ import {CKEditorModule} from "ng2-ckeditor";
     MdTabsModule,
     MdToolbarModule,
     MdTooltipModule,
-  ],
 
+    ConfirmDialogComponent,
+  ],
+  entryComponents: [ConfirmDialogComponent]
 })
 export class SharedModule {
 
