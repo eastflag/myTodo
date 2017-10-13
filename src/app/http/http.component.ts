@@ -21,6 +21,7 @@ export class HttpComponent implements OnInit {
   }
 
   getTodoList() {
+    console.log('getTodoList');
     this.appService.getTodoList()
       .then(data => {
         this.todoList = data;

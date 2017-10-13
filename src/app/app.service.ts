@@ -12,7 +12,7 @@ export class AppService {
   private headers: Headers;
 
   constructor(private http: Http) {
-    this.SERVER = `${environment.HOST}:${environment.PORT}`;
+    this.SERVER = `${environment.HOST}`;
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
