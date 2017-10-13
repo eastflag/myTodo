@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MemberVO} from "../../domain/member.vo";
 import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from "firebase";
+import {Observable} from "rxjs/Observable";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,20 @@ import * as firebase from "firebase";
 export class LoginComponent implements OnInit {
   member = new MemberVO();
 
-  constructor(public afAuth: AngularFireAuth) { }
+  authState: Observable<firebase.User>;
+  currentUser: firebase.User = null;
+
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
+    this.authState = this.afAuth.authState;
+    this.authState.subscribe(user => {
+      if (user) {
+        this.currentUser = user;
+        console.log(this.currentUser);
+      } else {
+        this.currentUser = null;
+      }
+    });
+  }
 
   ngOnInit() {
   }
@@ -33,12 +48,18 @@ export class LoginComponent implements OnInit {
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(data => {
-        console.log(data);
-        console.log(data.user.displayName, data.user.email, data.user.photoURL, data.user.phoneNumber);
+        // console.log(data);
+        // console.log(data.user.displayName, data.user.email, data.user.photoURL, data.user.phoneNumber);
       });
   }
 
+  gotoRegister() {
+    this.router.navigateByUrl('/register');
+  }
+
   /**
+   * https://medium.com/letsboot/lets-learn-how-to-install-and-setup-angularfire2-4-0-135d72bb0a41
+   *
    * - 로그인
    code: auth/user-not-found
    message: There is no user record corresponding to this identifier. The user may have been deleted

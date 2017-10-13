@@ -6,6 +6,7 @@ import {AngularComponent} from "./angular/angular.component";
 import {HttpComponent} from "./http/http.component";
 import {IndexComponent} from "./index.component";
 import {LoginComponent} from "./auth/login/login.component";
+import {RegisterComponent} from "./auth/register/register.component";
 
 const routes: Routes = [
   { path: '', component: IndexComponent, children: [
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'http', component: HttpComponent},
 
     { path: 'login', component: LoginComponent},
+    { path: 'register', component: RegisterComponent},
   ]},
 
   { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule'}

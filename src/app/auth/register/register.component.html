@@ -2,7 +2,7 @@
   <md-card class="login-form" fxFlex.xs="100" fxFlex.gt-xs="50" fxFlex.gt-sm="35%">
     <md-card-header>
       <md-card-title>
-        로그인
+        회원가입
       </md-card-title>
     </md-card-header>
 
@@ -15,22 +15,10 @@
         <input mdInput [(ngModel)]="member.pw" name="pw" type="password" placeholder="패스워드">
         <md-icon mdSuffix>security</md-icon>
       </md-form-field>
-      <button md-raised-button color="primary" class="md-block" (click)="loginWithPassword()">
-        <md-icon>input</md-icon>Login with Email
+      <button md-raised-button color="primary" class="md-block" (click)="signupWithPassword()">
+        <md-icon>input</md-icon>회원가입
       </button>
 
-      <button md-raised-button color="accent" class="md-block facebook-button" (click)="loginWithFacebook()">
-        Login with Facebook
-      </button>
-      <button md-raised-button color="accent" class="md-block google-button" (click)="loginWithGoogle()">
-        Login with Google
-      </button>
     </md-card-content>
-
-    <md-card-actions>
-      <button md-raised-button (click)="gotoRegister()">
-        회원가입
-      </button>
-    </md-card-actions>
   </md-card>
 </div>

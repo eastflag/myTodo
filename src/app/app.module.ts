@@ -18,9 +18,9 @@ import { LoginComponent } from './auth/login/login.component';
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {SharedModule} from "./shared/shared.module";
 import {AngularFireModule} from "angularfire2";
-import * as firebase from "firebase";
-import {myFirebaseConfig} from "./auth/my_firebase";
 import {AngularFireAuth} from "angularfire2/auth";
+import { RegisterComponent } from './auth/register/register.component';
+import {environment} from "../environments/environment";
 
 
 @NgModule({
@@ -31,6 +31,7 @@ import {AngularFireAuth} from "angularfire2/auth";
     MyDatePipe,
     HighlightDirective,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +40,7 @@ import {AngularFireAuth} from "angularfire2/auth";
     HttpModule,
     AppRoutingModule,
     SharedModule,
-    AngularFireModule.initializeApp(myFirebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [AppService, AuthGuardService, AngularFireAuth],
   bootstrap: [AppComponent],
