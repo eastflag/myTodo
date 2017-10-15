@@ -21,6 +21,7 @@ import {AngularFireModule} from "angularfire2";
 import {AngularFireAuth} from "angularfire2/auth";
 import { RegisterComponent } from './auth/register/register.component';
 import {environment} from "../environments/environment";
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {environment} from "../environments/environment";
     HighlightDirective,
     LoginComponent,
     RegisterComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,

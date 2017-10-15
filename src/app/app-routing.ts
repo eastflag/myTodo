@@ -7,6 +7,7 @@ import {HttpComponent} from "./http/http.component";
 import {IndexComponent} from "./index.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {RegisterComponent} from "./auth/register/register.component";
+import {NewsComponent} from "./news/news.component";
 
 const routes: Routes = [
   { path: '', component: IndexComponent, children: [
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'jquery', component: JqueryComponent},
     { path: 'angular', component: AngularComponent},
     { path: 'http', component: HttpComponent},
+    { path: 'news', component: NewsComponent},
 
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
