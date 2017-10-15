@@ -4,6 +4,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from "firebase";
 import {Observable} from "rxjs/Observable";
 import {Router} from "@angular/router";
+import {AuthGuardService} from "../auth-guard.service";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   authState: Observable<firebase.User>;
   currentUser: firebase.User = null;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthGuardService) {
     this.authState = this.afAuth.authState;
     this.authState.subscribe(user => {
       if (user) {
@@ -35,6 +36,12 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signInWithEmailAndPassword(this.member.email, this.member.pw)
       .then(data => {
         console.log(data);
+        let member = new MemberVO();
+        member.email = data.email;
+        member.name = data.displayName;
+        member.photo_url = data.photoURL;
+        member.phone = data.phone;
+        this.authService.login(member);
       });
   }
 
@@ -48,8 +55,15 @@ export class LoginComponent implements OnInit {
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(data => {
-        // console.log(data);
+        console.log(data);
         // console.log(data.user.displayName, data.user.email, data.user.photoURL, data.user.phoneNumber);
+        let member = new MemberVO();
+        member.email = data.user.email;
+        member.name = data.user.displayName;
+        member.photo_url = data.user.photoURL;
+        member.phone = data.user.phone;
+        console.log(member);
+        this.authService.login(member);
       });
   }
 
@@ -73,5 +87,8 @@ export class LoginComponent implements OnInit {
    user.email:
    user.phoneNumber:
    user.photoURL: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"
+
+   auth/operation-not-allowed",
+   message: "The given sign-in provider is disabled for this Fi…under the sign-in method tab of the Auth section."
    */
 }

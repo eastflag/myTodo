@@ -5,13 +5,15 @@ import {
 } from "@angular/router";
 import {JwtHelper} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
+import {AppService} from "../app.service";
+import {MemberVO} from "../domain/member.vo";
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
   private jwtHelper: JwtHelper;
   redirectUrl: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private appService: AppService) {
     this.jwtHelper = new JwtHelper();
   }
 
@@ -26,9 +28,10 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
     let token = localStorage.getItem('token');
-    let role = localStorage.getItem('role');
-    if (token && !this.jwtHelper.isTokenExpired(token) && role && role === 'admin') {
-      return true;
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      if (this.jwtHelper.decodeToken(token).subject.indexOf('admin') >= 0) {
+        return true;
+      }
     }
 
     this.redirectUrl = '/admin';
@@ -48,6 +51,30 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
     return false;
   }
 
+  signUp(member: MemberVO) {
+    this.appService.signUp(member)
+      .then(res => {
+        localStorage.setItem('token', res['token']);
+        if (this.redirectUrl) {
+          this.router.navigateByUrl(this.redirectUrl);
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      });
+  }
+
+  login(member: MemberVO) {
+    this.appService.login(member)
+      .then(res => {
+        localStorage.setItem('token', res['token']);
+        if (this.redirectUrl) {
+          this.router.navigateByUrl(this.redirectUrl);
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      });
+  }
+
   /**
    * 인증여부 체크: 로그인, 로그아웃 버튼 보여주기 등에 사
    * @returns {boolean}
@@ -63,25 +90,25 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
   }
 
   getMember() {
-    if (localStorage.getItem('member')) {
-      return JSON.parse(localStorage.getItem('member'));
+    if (localStorage.getItem('token')) {
+      let token = localStorage.getItem('token');
+      return this.jwtHelper.decodeToken(token).id;
     } else {
       return {};
     }
   }
 
   isAdmin() {
-    if (localStorage.getItem('role') && localStorage.getItem('role') === 'admin') {
-      return true;
-    } else {
-      return false;
+    let token = localStorage.getItem('token');
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      if (this.jwtHelper.decodeToken(token).subject.indexOf('admin') >= 0) {
+        return true;
+      }
     }
   }
 
   logOut() {
     localStorage.removeItem('token');
-    localStorage.removeItem('member');
-    localStorage.removeItem('role');
     this.redirectUrl = null;
     this.router.navigateByUrl('/');
   }

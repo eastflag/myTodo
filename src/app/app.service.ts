@@ -5,6 +5,7 @@ import {ResultVO} from "./domain/result.vo";
 import {REST} from "./constant";
 
 import 'rxjs/add/operator/toPromise';
+import {MemberVO} from "./domain/member.vo";
 
 @Injectable()
 export class AppService {
@@ -38,6 +39,18 @@ export class AppService {
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
+  // login & signUp
+  signUp(params: MemberVO): Promise<MemberVO> {
+    return this.http.post(this.SERVER + REST.signUP, JSON.stringify(params), {headers: this.headers})
+      .toPromise().then(this.extractData).catch(this.handleError);
+  }
+
+  login(params: MemberVO): Promise<MemberVO> {
+    return this.http.post(this.SERVER + REST.login, JSON.stringify(params), {headers: this.headers})
+      .toPromise().then(this.extractData).catch(this.handleError);
+  }
+
+  // extract and error handle-------------------------------------------------------------------------------------------
   private extractData(res: Response) {
     const body = res.json();
     return body || { };

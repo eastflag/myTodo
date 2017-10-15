@@ -8,11 +8,11 @@
 
     <md-card-content>
       <md-form-field class="md-block">
-        <input mdInput [(ngModel)]="member.email" name="email" placeholder="이메일">
+        <input mdInput [(ngModel)]="email" name="email" placeholder="이메일">
         <md-icon mdSuffix>email</md-icon>
       </md-form-field>
       <md-form-field class="md-block">
-        <input mdInput [(ngModel)]="member.pw" name="pw" type="password" placeholder="패스워드">
+        <input mdInput [(ngModel)]="pw" name="pw" type="password" placeholder="패스워드">
         <md-icon mdSuffix>security</md-icon>
       </md-form-field>
       <button md-raised-button color="primary" class="md-block" (click)="signupWithPassword()">
