@@ -51,31 +51,7 @@ export class AdminService {
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
-  // 댓글 관리 ---------------------------------------------------------------------------------------------------------
-  findComment(params: any): Promise<any> {
-    return this.http.post(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers})
-      .toPromise().then(this.extractData).catch(this.handleError);
-  }
 
-  findOneComment(params: any): Promise<any> {
-    return this.http.get(this.SERVER + '/api/oneComment?comment_id=' + params)
-      .toPromise().then(this.extractData).catch(this.handleError);
-  }
-
-  addComment(params: any): Promise<any> {
-    return this.http.post(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers})
-      .toPromise().then(this.extractData).catch(this.handleError);
-  }
-
-  modifyComment(params: any): Promise<any> {
-    return this.http.put(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers})
-      .toPromise().then(this.extractData).catch(this.handleError);
-  }
-
-  removeComment(params: any): Promise<any> {
-    return this.http.delete(this.SERVER + '/api/comment?comment_id=' + params)
-      .toPromise().then(this.extractData).catch(this.handleError);
-  }
 
   private extractData(res: Response) {
     let body = res.json();

@@ -1,0 +1,8 @@
+<md-card *ngIf="news">
+  <md-card-header>
+    <md-card-title>{{news.title}}</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <div [innerHTML]="news.content"></div>
+  </md-card-content>
+</md-card>
