@@ -7,13 +7,14 @@ import {JwtHelper} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
 import {AppService} from "../app.service";
 import {MemberVO} from "../domain/member.vo";
+import {AngularFireAuth} from "angularfire2/auth";
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
   private jwtHelper: JwtHelper;
   redirectUrl: string;
 
-  constructor(private router: Router, private appService: AppService) {
+  constructor(private router: Router, private appService: AppService, public afAuth: AngularFireAuth) {
     this.jwtHelper = new JwtHelper();
   }
 
@@ -92,7 +93,8 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
   getMember() {
     if (localStorage.getItem('token')) {
       let token = localStorage.getItem('token');
-      return this.jwtHelper.decodeToken(token).id;
+      // console.log(this.jwtHelper.decodeToken(token));
+      return this.jwtHelper.decodeToken(token).jti;
     } else {
       return {};
     }
@@ -108,6 +110,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
   }
 
   logOut() {
+    this.afAuth.auth.signOut();
     localStorage.removeItem('token');
     this.redirectUrl = null;
     this.router.navigateByUrl('/');

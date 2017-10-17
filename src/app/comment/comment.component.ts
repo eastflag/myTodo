@@ -55,6 +55,7 @@ export class CommentComponent implements OnChanges {
     this.newComment.member_id = this.authGuard.getMember();
     this.newComment.news_id = this.news_id;
 
+    console.log(this.newComment);
     this.appService.addComment(this.newComment)
       .then(res => {
         if (res.result === 0) {

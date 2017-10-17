@@ -5,4 +5,6 @@ export class CommentVO {
   content: string;
   created: string;
   updated: string;
+
+  name: string;
 }

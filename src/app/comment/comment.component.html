@@ -18,12 +18,12 @@
 <md-card *ngFor="let comment of commentList">
   <md-card-content class="comment-box">
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span>{{comment.nickname}}</span>
+      <span>{{comment.name}}</span>
       <span>{{comment.updated}}</span>
     </div>
     <p>{{comment.content}}</p>
   </md-card-content>
-  <md-card-actions fxLayoutAlign="end center" *ngIf="comment.member_id === getMemberId()">
+  <md-card-actions fxLayoutAlign="end center" *ngIf="comment.member_id == getMemberId()">
     <button md-raised-button md-button-sm color="warn" (click)="confirmDelete(comment)">삭제</button>
   </md-card-actions>
 </md-card>
