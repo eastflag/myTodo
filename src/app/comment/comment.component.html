@@ -1,0 +1,29 @@
+<md-card>
+  <md-card-header>
+    <p style="margin: 1rem 0;">댓글작성</p>
+  </md-card-header>
+  <md-card-content>
+    <md-form-field class="md-block">
+      <textarea mdInput [(ngModel)]="newComment.content" #content maxlength="300" placeholder="댓글을 작성하세요"
+                (focus)="checkLogin()"
+                rows="5" style="border: 1px solid #dddddd"></textarea>
+      <md-hint align="end">{{content.value.length}} / 300</md-hint>
+    </md-form-field>
+  </md-card-content>
+  <md-card-actions fxLayoutAlign="end center">
+    <button md-raised-button md-button-sm color="primary" (click)="saveComment()">완료</button>
+  </md-card-actions>
+</md-card>
+
+<md-card *ngFor="let comment of commentList">
+  <md-card-content class="comment-box">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>{{comment.nickname}}</span>
+      <span>{{comment.updated}}</span>
+    </div>
+    <p>{{comment.content}}</p>
+  </md-card-content>
+  <md-card-actions fxLayoutAlign="end center" *ngIf="comment.member_id === getMemberId()">
+    <button md-raised-button md-button-sm color="warn" (click)="confirmDelete(comment)">삭제</button>
+  </md-card-actions>
+</md-card>
