@@ -23,6 +23,14 @@ export class LoginComponent implements OnInit {
       if (user) {
         this.currentUser = user;
         console.log(this.currentUser);
+
+        let member = new MemberVO();
+        member.email = user.email;
+        member.name = user.displayName;
+        member.photo_url = user.photoURL;
+        console.log(member);
+
+        this.authService.login(member);
       } else {
         this.currentUser = null;
       }
@@ -55,15 +63,9 @@ export class LoginComponent implements OnInit {
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(data => {
-        console.log(data);
+        console.log('signInWithPopup');
         // console.log(data.user.displayName, data.user.email, data.user.photoURL, data.user.phoneNumber);
-        let member = new MemberVO();
-        member.email = data.user.email;
-        member.name = data.user.displayName;
-        member.photo_url = data.user.photoURL;
-        member.phone = data.user.phone;
-        console.log(member);
-        this.authService.login(member);
+
       });
   }
 

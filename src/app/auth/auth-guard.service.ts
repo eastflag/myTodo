@@ -71,7 +71,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
         if (this.redirectUrl) {
           this.router.navigateByUrl(this.redirectUrl);
         } else {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/admin');
         }
       });
   }
