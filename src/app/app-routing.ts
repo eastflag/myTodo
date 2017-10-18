@@ -12,7 +12,7 @@ import {ViewComponent} from "./news/view/view.component";
 
 const routes: Routes = [
   { path: '', component: IndexComponent, children: [
-    { path: 'home', component: HomeComponent},
+    { path: '', component: HomeComponent},
     { path: 'jquery', component: JqueryComponent},
     { path: 'angular', component: AngularComponent},
     { path: 'http', component: HttpComponent},
