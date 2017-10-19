@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
-  HOST: 'http://www.www.javabrain.kr',
-  PORT: '8080',
+  HOST: '',
   firebase: {
     apiKey: "AIzaSyDv_fbYR_4OV_xYREjE0FTMLBI5pKGBeq8",
     authDomain: "javabrain-d5728.firebaseapp.com",
