@@ -47,7 +47,7 @@ export class AdminService {
     headers.append('Accept', 'application/json');
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.SERVER + '/api/imageUpload', formData, options)
+    return this.http.post('http://www.javabrain.kr:8080/api/imageUpload', formData, options)
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
