@@ -23,10 +23,10 @@ export class RegisterComponent implements OnInit {
       .then(data => {
         console.log(data);
         let member = new MemberVO();
-        member.email = data.email;
-        member.name = data.displayName;
-        member.photo_url = data.photoURL;
-        member.phone = data.phone;
+        member.email = data['email'];
+        member.name = data['displayName'];
+        member.photo_url = data['photoURL'];
+        member.phone = data['phone'];
         this.authService.signUp(member);
       })
       .catch(error => {

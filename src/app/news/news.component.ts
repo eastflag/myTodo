@@ -30,8 +30,8 @@ export class NewsComponent implements OnInit {
     };
     this.appService.findNews(params)
       .then(res => {
-        this.newsList = res.data;
-        this.page.totalCount = res.total;
+        this.newsList = res['data'];
+        this.page.totalCount = res['total'];
       });
   }
 

@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CommentVO} from "../domain/comment.vo";
-import {MdDialog, MdDialogRef, MatSnackBar} from "@angular/material";
+import {MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {AppService} from "../app.service";
 import {AuthGuardService} from "../auth/auth-guard.service";
 import {PlatformLocation} from "@angular/common";
@@ -20,10 +20,10 @@ export class CommentComponent implements OnChanges {
 
   newComment: CommentVO = new CommentVO();
 
-  dialogRef: MdDialogRef<any>;
+  dialogRef: MatDialogRef<any>;
 
   constructor(private appService: AppService, private authGuard: AuthGuardService,
-              private location: PlatformLocation, private snackBar: MatSnackBar, private dialog: MdDialog) {
+              private location: PlatformLocation, private snackBar: MatSnackBar, private dialog: MatDialog) {
 
   }
 
@@ -34,7 +34,7 @@ export class CommentComponent implements OnChanges {
 
   getCommentList() {
     this.appService.findComment(this.news_id)
-      .then(res => this.commentList = res);
+      .then((res: Array<CommentVO >) => this.commentList = res);
   }
 
   // textarea에 포커스가 오면 로그인을 체크한다. 완료시에 체크하면 입력된 내용을 저장했다 꺼내기가 번거롭다.
@@ -58,7 +58,7 @@ export class CommentComponent implements OnChanges {
     console.log(this.newComment);
     this.appService.addComment(this.newComment)
       .then(res => {
-        if (res.result === 0) {
+        if (res['result'] === 0) {
           this.newComment.content = null;
           this.getCommentList();
         }
@@ -74,7 +74,7 @@ export class CommentComponent implements OnChanges {
       if (result) { // 삭제하기
         this.appService.removeComment(comment.comment_id)
           .then(value => {
-            if (value.result === 0) {
+            if (value['result'] === 0) {
               this.getCommentList();
             }
           });

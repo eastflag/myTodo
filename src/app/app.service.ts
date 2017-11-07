@@ -6,6 +6,7 @@ import {REST} from "./constant";
 
 import 'rxjs/add/operator/toPromise';
 import {MemberVO} from "./domain/member.vo";
+import {CommentVO} from "./domain/comment.vo";
 
 @Injectable()
 export class AppService {
@@ -62,7 +63,7 @@ export class AppService {
   }
 
   // 댓글 관리 ---------------------------------------------------------------------------------------------------------
-  findComment(params: any): Promise<any> {
+  findComment(params: any): Promise<Array<CommentVO >> {
     return this.http.get(this.SERVER + '/api/comment?news_id=' + params)
       .toPromise().then(this.extractData).catch(this.handleError);
   }
