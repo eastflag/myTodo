@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router, RouterState} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AdminService} from "../../admin.service";
 import {NewsVO} from "../../../domain/news.vo";
-import {MdSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-modify',
@@ -16,7 +16,7 @@ export class ModifyComponent implements OnInit {
   fileList: FileList;
 
   constructor(private route: ActivatedRoute, private adminService: AdminService, private router: Router,
-              private snackBar: MdSnackBar) {
+              private snackBar: MatSnackBar) {
 
   }
 
@@ -24,7 +24,7 @@ export class ModifyComponent implements OnInit {
     this.route.params.subscribe(params => {
       let news_id = +params['news_id'];
       this.adminService.findOneNews(news_id)
-        .then(res => {
+        .then((res: NewsVO) => {
           this.news = res;
         });
     });
@@ -33,7 +33,7 @@ export class ModifyComponent implements OnInit {
   modifyNews() {
     this.adminService.modifyNews(this.news)
       .then(res => {
-        if (res.result === 0) {
+        if (res['result'] === 0) {
           this.router.navigate(['../..'], {relativeTo: this.route});
           this.snackBar.open('수정하였습니다.', null, {
             duration: 3000,
@@ -64,7 +64,7 @@ export class ModifyComponent implements OnInit {
 
     this.adminService.imageUpload(formData)
       .then(res => {
-        if (res.result === 0) {
+        if (res['result'] === 0) {
           // 입력폼 초기화
           // this.fileList[0] = null;
           // this.fileList = null;
@@ -72,11 +72,11 @@ export class ModifyComponent implements OnInit {
           // this.newFile.nativeElement.value = ""; // input type file은 readonly
 
           // 이미지 경로를  editor에 추가한다.
-          console.log(res.value);
+          console.log(res['value']);
           if (this.news.content) {
-            this.news.content += `<img src="http://www.javabrain.kr${res.value}">`;
+            this.news.content += `<img src="http://www.javabrain.kr${res['value']}">`;
           } else {
-            this.news.content = `<img src="http://www.javabrain.kr${res.value}">`;
+            this.news.content = `<img src="http://www.javabrain.kr${res['value']}">`;
           }
         }
       });

@@ -1,36 +1,36 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-  <md-card class="login-form" fxFlex.xs="100" fxFlex.gt-xs="50" fxFlex.gt-sm="35%">
-    <md-card-header>
-      <md-card-title>
+  <mat-card class="login-form" fxFlex.xs="100" fxFlex.gt-xs="50" fxFlex.gt-sm="35%">
+    <mat-card-header>
+      <mat-card-title>
         로그인
-      </md-card-title>
-    </md-card-header>
+      </mat-card-title>
+    </mat-card-header>
 
-    <md-card-content>
-      <md-form-field class="md-block">
+    <mat-card-content>
+      <mat-form-field class="mat-block">
         <input mdInput [(ngModel)]="member.email" name="email" placeholder="이메일">
-        <md-icon mdSuffix>email</md-icon>
-      </md-form-field>
-      <md-form-field class="md-block">
+        <mat-icon mdSuffix>email</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="mat-block">
         <input mdInput [(ngModel)]="member.pw" name="pw" type="password" placeholder="패스워드">
-        <md-icon mdSuffix>security</md-icon>
-      </md-form-field>
-      <button md-raised-button color="primary" class="md-block" (click)="loginWithPassword()">
-        <md-icon>input</md-icon>Login with Email
+        <mat-icon mdSuffix>security</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="mat-block" (click)="loginWithPassword()">
+        <mat-icon>input</mat-icon>Login with Email
       </button>
 
-      <button md-raised-button color="accent" class="md-block facebook-button" (click)="loginWithFacebook()">
+      <button mat-raised-button color="accent" class="mat-block facebook-button" (click)="loginWithFacebook()">
         Login with Facebook
       </button>
-      <button md-raised-button color="accent" class="md-block google-button" (click)="loginWithGoogle()">
+      <button mat-raised-button color="accent" class="mat-block google-button" (click)="loginWithGoogle()">
         Login with Google
       </button>
-    </md-card-content>
+    </mat-card-content>
 
-    <md-card-actions>
-      <button md-raised-button (click)="gotoRegister()">
+    <mat-card-actions>
+      <button mat-raised-button (click)="gotoRegister()">
         회원가입
       </button>
-    </md-card-actions>
-  </md-card>
+    </mat-card-actions>
+  </mat-card>
 </div>

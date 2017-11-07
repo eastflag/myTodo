@@ -1,4 +1,4 @@
-<md-toolbar color="primary">
+<mat-toolbar color="primary">
   <span routerLink="/" class="brand">Angular4</span>
   <ul class="top-menu" fxHide.xs="true">
     <li><a routerLinkActive="active" routerLink="/jquery">jquery</a></li>
@@ -8,35 +8,35 @@
   </ul>
   <span fxFlex="1 0 auto"></span>
   <div>
-    <button md-button *ngIf="!isAuthenticated()" routerLink="/login">
+    <button mat-button *ngIf="!isAuthenticated()" routerLink="/login">
       로그인
     </button>
-    <button md-button *ngIf="isAuthenticated()" (click)="logout()">
+    <button mat-button *ngIf="isAuthenticated()" (click)="logout()">
       로그아웃
     </button>
-    <button md-icon-button [mdMenuTriggerFor]="menu" fxHide.gt-xs="true">
-      <md-icon>menu</md-icon>
+    <button mat-icon-button [mdMenuTriggerFor]="menu" fxHide.gt-xs="true">
+      <mat-icon>menu</mat-icon>
     </button>
-    <md-menu #menu="mdMenu">
-      <button md-menu-item routerLink="/jquery">
-        <md-icon>dialpad</md-icon>
+    <mat-menu #menu="mdMenu">
+      <button mat-menu-item routerLink="/jquery">
+        <mat-icon>dialpad</mat-icon>
         <span>jquery</span>
       </button>
-      <button md-menu-item routerLink="/angular">
-        <md-icon>gamepad</md-icon>
+      <button mat-menu-item routerLink="/angular">
+        <mat-icon>gamepad</mat-icon>
         <span>angular</span>
       </button>
-      <button md-menu-item routerLink="/http">
-        <md-icon>http</md-icon>
+      <button mat-menu-item routerLink="/http">
+        <mat-icon>http</mat-icon>
         <span>http</span>
       </button>
-      <button md-menu-item routerLink="/news">
-        <md-icon>fiber_new</md-icon>
+      <button mat-menu-item routerLink="/news">
+        <mat-icon>fiber_new</mat-icon>
         <span>news</span>
       </button>
-    </md-menu>
+    </mat-menu>
   </div>
-</md-toolbar>
+</mat-toolbar>
 
 <div class="container">
   <router-outlet></router-outlet>

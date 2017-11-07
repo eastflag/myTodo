@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CommentVO} from "../domain/comment.vo";
-import {MdDialog, MdDialogRef, MdSnackBar} from "@angular/material";
+import {MdDialog, MdDialogRef, MatSnackBar} from "@angular/material";
 import {AppService} from "../app.service";
 import {AuthGuardService} from "../auth/auth-guard.service";
 import {PlatformLocation} from "@angular/common";
@@ -23,7 +23,7 @@ export class CommentComponent implements OnChanges {
   dialogRef: MdDialogRef<any>;
 
   constructor(private appService: AppService, private authGuard: AuthGuardService,
-              private location: PlatformLocation, private snackBar: MdSnackBar, private dialog: MdDialog) {
+              private location: PlatformLocation, private snackBar: MatSnackBar, private dialog: MdDialog) {
 
   }
 

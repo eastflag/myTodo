@@ -1,11 +1,11 @@
-<md-card>
-  <md-card-header>
-    <md-card-title>글쓰기</md-card-title>
-  </md-card-header>
-  <md-card-content>
-    <md-form-field class="md-block">
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>글쓰기</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="mat-block">
       <input mdInput placeholder="제목" [(ngModel)]="news.title">
-    </md-form-field>
+    </mat-form-field>
     <div>
       <ckeditor [(ngModel)]="news.content" debounce="10">
       </ckeditor>
@@ -16,7 +16,7 @@
       <img *ngIf="thumbnailSrc" [src]="thumbnailSrc" style="width:100px; height: auto;">
     </div>
     <div style="margin-top: 1em;" fxLayoutAlign="center center">
-      <button md-raised-button md-button-sm color="primary" (click)="addNews()">저 장</button>
+      <button mat-raised-button mat-button-sm color="primary" (click)="addNews()">저 장</button>
     </div>
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>

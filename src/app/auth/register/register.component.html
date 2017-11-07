@@ -1,24 +1,24 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-  <md-card class="login-form" fxFlex.xs="100" fxFlex.gt-xs="50" fxFlex.gt-sm="35%">
-    <md-card-header>
-      <md-card-title>
+  <mat-card class="login-form" fxFlex.xs="100" fxFlex.gt-xs="50" fxFlex.gt-sm="35%">
+    <mat-card-header>
+      <mat-card-title>
         회원가입
-      </md-card-title>
-    </md-card-header>
+      </mat-card-title>
+    </mat-card-header>
 
-    <md-card-content>
-      <md-form-field class="md-block">
+    <mat-card-content>
+      <mat-form-field class="mat-block">
         <input mdInput [(ngModel)]="email" name="email" placeholder="이메일">
-        <md-icon mdSuffix>email</md-icon>
-      </md-form-field>
-      <md-form-field class="md-block">
+        <mat-icon mdSuffix>email</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="mat-block">
         <input mdInput [(ngModel)]="pw" name="pw" type="password" placeholder="패스워드">
-        <md-icon mdSuffix>security</md-icon>
-      </md-form-field>
-      <button md-raised-button color="primary" class="md-block" (click)="signupWithPassword()">
-        <md-icon>input</md-icon>회원가입
+        <mat-icon mdSuffix>security</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="mat-block" (click)="signupWithPassword()">
+        <mat-icon>input</mat-icon>회원가입
       </button>
 
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 </div>

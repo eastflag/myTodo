@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MemberVO} from "../../domain/member.vo";
 import {AngularFireAuth} from "angularfire2/auth";
-import {MdSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material";
 import {AuthGuardService} from "../auth-guard.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   email = null;
   pw = null;
 
-  constructor(public afAuth: AngularFireAuth, private snackBar: MdSnackBar, private authService: AuthGuardService) { }
+  constructor(public afAuth: AngularFireAuth, private snackBar: MatSnackBar, private authService: AuthGuardService) { }
 
   ngOnInit() {
   }

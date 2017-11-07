@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AdminService} from "../../admin.service";
 import {NewsVO} from "../../../domain/news.vo";
-import {MdDialog, MdDialogRef, MdSnackBar} from "@angular/material";
+import {MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {ConfirmDialogComponent} from "../../../shared/dialog/confirm.dialog.component";
 import {PlatformLocation} from "@angular/common";
 
@@ -14,16 +14,16 @@ import {PlatformLocation} from "@angular/common";
 export class ViewComponent implements OnInit {
   news: NewsVO;
 
-  dialogRef: MdDialogRef<any>;
+  dialogRef: MatDialogRef<any>;
 
   constructor(private route: ActivatedRoute, private adminService: AdminService, private router: Router,
-              private snackBar: MdSnackBar, private dialog: MdDialog, private location: PlatformLocation) { }
+              private snackBar: MatSnackBar, private dialog: MatDialog, private location: PlatformLocation) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       let news_id = +params['news_id'];
       this.adminService.findOneNews(news_id)
-        .then(res => {
+        .then((res: NewsVO) => {
           this.news = res;
         });
     });
@@ -38,7 +38,7 @@ export class ViewComponent implements OnInit {
       if (result) { // 삭제하기
         this.adminService.removeNews(news.news_id)
           .then(value => {
-            if (value.result === 0) {
+            if (value['result'] === 0) {
               this.snackBar.open('삭제하였습니다.', null, {
                 duration: 3000,
               });

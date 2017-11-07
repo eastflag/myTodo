@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, Response, RequestOptions} from "@angular/http";
 import {environment} from "../../environments/environment";
+import {NewsVO} from "../domain/news.vo";
 
 @Injectable()
 export class AdminService {
@@ -20,7 +21,7 @@ export class AdminService {
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
-  findOneNews(params: any): Promise<any> {
+  findOneNews(params: any): Promise<NewsVO> {
     return this.http.get(this.SERVER + '/api/news?news_id=' + params)
       .toPromise().then(this.extractData).catch(this.handleError);
   }

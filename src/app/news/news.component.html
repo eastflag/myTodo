@@ -1,21 +1,21 @@
 <router-outlet></router-outlet>
 
-<md-card>
-  <md-card-header fxLayout="row" fxLayoutAlign="space-between center">
-    <md-card-title>
+<mat-card>
+  <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-card-title>
       뉴스 목록
-    </md-card-title>
-  </md-card-header>
-  <md-card-content>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
     <div class="board-box" fxLayout="column" *ngFor="let news of newsList" (click)="gotoView(news)">
       <p fxLayout="row" fxLayoutAlign="space-between center">
         <span>{{news.title}}</span><span>{{news.updated}}</span>
       </p>
     </div>
 
-    <md-paginator [length]="page.totalCount" [pageIndex]="page.pageIndex"
+    <mat-paginator [length]="page.totalCount" [pageIndex]="page.pageIndex"
                   [pageSize]="page.pageSize"
                   [pageSizeOptions]="page.pageSizeOptions" (page)="pageChanged($event)">
-    </md-paginator>
-  </md-card-content>
-</md-card>
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>
