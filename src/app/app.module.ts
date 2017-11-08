@@ -24,6 +24,7 @@ import {environment} from "../environments/environment";
 import { NewsComponent } from './news/news.component';
 import { ViewComponent } from './news/view/view.component';
 import { CommentComponent } from './comment/comment.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { CommentComponent } from './comment/comment.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),

@@ -7,6 +7,7 @@ import {REST} from "./constant";
 import 'rxjs/add/operator/toPromise';
 import {MemberVO} from "./domain/member.vo";
 import {CommentVO} from "./domain/comment.vo";
+import {TodoVo} from "./domain/todo.vo";
 
 @Injectable()
 export class AppService {
@@ -20,12 +21,12 @@ export class AppService {
     });
   }
 
-  addTodo(params: any): Promise<ResultVO> {
+  addTodo(params: any): Promise<TodoVo> {
     return this.http.post(this.SERVER + REST.todo, JSON.stringify(params), {headers: this.headers})
       .toPromise().then(this.extractData).catch(this.handleError);
   }
 
-  updateTodo(params: any): Promise<ResultVO> {
+  updateTodo(params: any): Promise<TodoVo> {
     return this.http.put(this.SERVER + REST.todo, JSON.stringify(params), {headers: this.headers})
       .toPromise().then(this.extractData).catch(this.handleError);
   }

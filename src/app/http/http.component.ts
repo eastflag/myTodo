@@ -8,7 +8,7 @@ import {TodoVo} from "../domain/todo.vo";
 })
 export class HttpComponent implements OnInit {
   newTodo: TodoVo;
-  todoList = [];
+  todoList = new Array<TodoVo>();
   // 취소시 복원하기 위한 데이터를 저장하는 컬렉션 :  number 에는 todo_id 저장
   tempTodoList: Map<number, TodoVo> = new Map<number, TodoVo>();
 
@@ -23,14 +23,14 @@ export class HttpComponent implements OnInit {
   getTodoList() {
     console.log('getTodoList');
     this.appService.getTodoList()
-      .then(data => {
+      .then((data: Array<TodoVo>) => {
         this.todoList = data;
       });
   }
 
   add_todo() {
     this.appService.addTodo(this.newTodo)
-      .then(data => {
+      .then((data: TodoVo) => {
         this.todoList.unshift(data);
       });
 
